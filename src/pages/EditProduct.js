@@ -45,7 +45,7 @@ const EditProduct = () => {
         });
         setProduct(response.data.data);
     });
-
+    console.log("NGETES RES:", response);
     // Fetching category data
     useQuery('categoriesCache', async () => {
         const response = await API.get('/categories');
