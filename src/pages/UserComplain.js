@@ -18,7 +18,7 @@ const UserComplain = () => {
     const [contact, setContact] = useState(null)
     const [contacts, setContacts] = useState([])
     const [messages, setMessages] = useState([])
-    const [state] = useContext(UserContext)
+    const [state, dispatch] = useContext(UserContext)
 
 
     const title = "Complain User"
@@ -44,13 +44,13 @@ const UserComplain = () => {
             socket.emit("load messages", contact?.id)
         })
 
+        loadContact()
+        loadMessages()
+
         // listen error sent from server
         socket.on("connect_error", (err) => {
             console.error(err.message); // not authorized
         });
-        // code here
-        loadContact()
-        loadMessages()
 
         return () => {
             socket.disconnect()

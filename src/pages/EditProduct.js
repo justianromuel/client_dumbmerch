@@ -92,6 +92,7 @@ const EditProduct = () => {
             const config = {
                 headers: {
                     'Content-type': 'multipart/form-data',
+                    Authorization: "Basic " + localStorage.token,
                 },
             };
 

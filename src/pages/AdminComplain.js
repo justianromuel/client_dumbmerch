@@ -58,7 +58,7 @@ const AdminComplain = () => {
     const loadContacts = () => {
         socket.emit("load customer contacts")
         socket.on("customer contacts", (data) => {
-            console.log("cek data customer contact:", data);
+            // console.log("cek data customer contact:", data);
             // filter just customers which have sent a message
             let dataContacts = data.filter((item) => (item.status !== 'admin') && (item.recipientMessage.length > 0 || item.senderMessage.length > 0))
 
