@@ -79,8 +79,9 @@ const EditProduct = () => {
 
         // Create image url for preview
         if (e.target.type === 'file') {
-            let url = URL.createObjectURL(e.target.files[0]);
-            setPreview(url);
+            // let url = URL.createObjectURL(e.target.files[0]);
+            // setPreview(url);
+            setPreview(e.target.files)
         }
     };
 
@@ -92,14 +93,18 @@ const EditProduct = () => {
             const config = {
                 headers: {
                     'Content-type': 'multipart/form-data',
+                    Authorization: "Basic " + localStorage.token,
                 },
             };
 
             // Store data with FormData as object
             const formData = new FormData();
-            if (form.image) {
-                formData.set('image', form?.image[0], form?.image[0]?.name);
+            if (preview) {
+                formData.set('image', preview[0], preview[0]?.name);
             }
+            // if (form.image) {
+            //     formData.set('image', form?.image[0], form?.image[0]?.name);
+            // }
             formData.set('name', form.name);
             formData.set('desc', form.desc);
             formData.set('price', form.price);
