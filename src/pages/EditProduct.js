@@ -142,7 +142,7 @@ const EditProduct = () => {
                     left: '10',
                     top: '10',
                 }}>
-                <div class="form-check form-switch">
+                <div classname="form-check form-switch">
                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={toggleTheme} checked={theme === "light"} />
                     <label className="form-check-label" for="flexSwitchCheckDefault">{theme === "dark" ? "Dark Mode" : "Light Mode"}</label>
                 </div>
@@ -156,7 +156,7 @@ const EditProduct = () => {
                         </Col>
                         <Col xs="12">
                             <form onSubmit={(e) => handleSubmit.mutate(e)}>
-                                {preview && (
+                                {!preview ? (
                                     <div>
                                         <img
                                             src={preview}
@@ -166,6 +166,17 @@ const EditProduct = () => {
                                                 objectFit: 'cover',
                                             }}
                                             alt="preview"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <img
+                                            src={URL.createObjectURL(preview[0])}
+                                            style={{
+                                                maxWidth: "150px",
+                                                maxHeight: "150px",
+                                                objectFit: "cover",
+                                            }}
                                         />
                                     </div>
                                 )}
@@ -184,14 +195,14 @@ const EditProduct = () => {
                                     placeholder="Product Name"
                                     name="name"
                                     onChange={handleChange}
-                                    value={form?.name}
+                                    value={form.name}
                                     className="input-edit-category mt-4"
                                 />
                                 <textarea
                                     placeholder="Product Desc"
                                     name="desc"
                                     onChange={handleChange}
-                                    value={form?.desc}
+                                    value={form.desc}
                                     className="input-edit-category mt-4"
                                     style={{ height: '130px' }}
                                 ></textarea>
@@ -200,7 +211,7 @@ const EditProduct = () => {
                                     placeholder="Price (Rp.)"
                                     name="price"
                                     onChange={handleChange}
-                                    value={form?.price}
+                                    value={form.price}
                                     className="input-edit-category mt-4"
                                 />
                                 <input
@@ -208,7 +219,7 @@ const EditProduct = () => {
                                     placeholder="Stock"
                                     name="qty"
                                     onChange={handleChange}
-                                    value={form?.qty}
+                                    value={form.qty}
                                     className="input-edit-category mt-4"
                                 />
 
@@ -220,14 +231,14 @@ const EditProduct = () => {
                                         Category
                                     </div>
                                     {product &&
-                                        categories?.map((item, index) => (
+                                        categories.map((item, index) => (
                                             <label key={index} className="checkbox-inline me-4">
                                                 <CheckBox
                                                     categoryId={categoryId}
-                                                    value={item?.id}
+                                                    value={item.id}
                                                     handleChangeCategoryId={handleChangeCategoryId}
                                                 />
-                                                <span className="ms-2">{item?.name}</span>
+                                                <span className="ms-2">{item.name}</span>
                                             </label>
                                         ))}
                                 </div>
