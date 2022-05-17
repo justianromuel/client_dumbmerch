@@ -24,7 +24,7 @@ const AdminComplain = () => {
     document.title = 'DumbMerch | ' + title
 
     useEffect(() => {
-        socket = io('http://localhost:5000', {
+        socket = io('https://dumbmerch-justian.herokuapp.com/api/v1', {
             auth: {
                 token: localStorage.getItem('token')
             },
